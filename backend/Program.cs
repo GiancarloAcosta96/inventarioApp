@@ -62,7 +62,8 @@ builder.Services.AddCors(options =>
                 "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net",
                 "http://localhost:5134",
                 "https://localhost:5134",
-                "http://192.168.18.64:5173"
+                "http://192.168.18.64:5173",
+                "https://ambitious-stone-050fd650f.5.azurestaticapps.net/"
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
