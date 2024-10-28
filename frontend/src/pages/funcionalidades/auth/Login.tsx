@@ -39,7 +39,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5134/api/Auth/login",
+        "https://ambitious-stone-050fd650f.5.azurestaticapps.net/login",
         {
           nombreUsuario,
           password,
