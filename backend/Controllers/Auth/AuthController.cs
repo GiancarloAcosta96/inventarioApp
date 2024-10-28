@@ -151,7 +151,7 @@ namespace backend.Controllers.Auth
                 UsuarioId = usuario.UsuarioId,
                 Token = resetToken,
                 FechaGeneracion = DateTime.UtcNow,
-                FechaExpiracion = DateTime.UtcNow.AddHours(1), // Expira en 1 hora
+                FechaExpiracion = DateTime.UtcNow.AddHours(1),
                 Usado = false
             };
 
@@ -159,7 +159,7 @@ namespace backend.Controllers.Auth
             await _context.SaveChangesAsync();
 
             // Generar enlace de recuperación
-            var resetUrl = $"http://192.168.18.64:5173/reset-password?token={resetToken}";
+            var resetUrl = $"https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/reset-password?token={resetToken}";
 
             // Enviar correo (aquí necesitas configurar tu servicio de correo)
             await _authService.SendPasswordResetEmail(request.Email, resetUrl);

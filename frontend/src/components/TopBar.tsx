@@ -17,13 +17,16 @@ const TopBar = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
 
   const handleLogout = () => {
-    fetch("http://localhost:5134/api/Auth/logout", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/logout",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         localStorage.clear();
