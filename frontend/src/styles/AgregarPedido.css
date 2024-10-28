@@ -1,0 +1,107 @@
+.overlayDrawer {
+    width: 80%;
+  }
+  
+  .drawerHeader {
+    margin-bottom: 2%;
+  }
+  
+  .drawerBody {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .izquierda,
+  .derecha {
+    width: 49%;
+    height: 100%;
+  }
+  
+  .combobox {
+    width: 100%;
+  }
+  
+  .fieldGroup {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+  
+  .fieldGroup div {
+    width: 49%;
+  }
+  
+  .datePicker {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+  }
+  
+  .tableProducts {
+    flex: 1;
+    margin-right: 10px;
+    height: 100%;
+  }
+  
+  .tableHeader {
+    margin-bottom: 20px;
+  }
+  
+  .availableProductsHeader,
+  .selectedProductsHeader {
+    margin-bottom: 10px;
+  }
+  
+  .selectedTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .selectedTable th,
+  .selectedTable td {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .selectedTable th {
+    border-bottom: 2px solid gray;
+  }
+  
+  .totalsContainer {
+    flex: 0 0 auto;
+    padding: 10px;
+    border-top: 1px solid gray;
+    margin-top: 10px;
+  }
+  
+  .totalsText {
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .totalsText p {
+    font-size: 14px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .primaryButton {
+    background-color: #09b80e;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .cancelButton {
+    background-color: #8d0900;
+    color: white;
+    padding: 10px;
+  }
+  

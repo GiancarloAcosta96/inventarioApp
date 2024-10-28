@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+/* Estilos Generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Layout Principal */
+.app {
+  display: flex;
+  height: 100vh;
+  background-color: #444;
+}
+
+/* Layout de Autenticación (Login) */
+.auth-app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  
+}
+
+#loginPrincipal {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#loginPrincipal #logo {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  color: #fff;
+  height: 100%;
+  object-fit: contain;
+}
+
+#loginPrincipal #izquierda {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  background-color: #111;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginPrincipal #izquierda #logo {
+  margin: auto;
+}
+
+#loginPrincipal #derecha {
+  width: 50%;
+  background-color: #000;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginPrincipal #derecha #formulario {
+  margin: auto;
+}
+
+#loginPrincipal #derecha #formulario #usuario,
+#loginPrincipal #derecha #formulario #password {
+  color: white;
+}
+
+/* Topbar */
+/* Estilos para la barra superior */
+.topbar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; 
+}
+
+.tituloTop {
+  font-size: 1.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nombre-usuario {
+  font-size: 1.2rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.logout-button {
+  background-color: #880000;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #a30000;
+}
+
+.main-content {
+  padding-top: 70px;
+}
+
+/* Pagina Principa */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  height: 70vh;
+  width: 60%;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+/* Estilos de los items */
+.grid-item {
+  width: 300px;
+  height: 220px;
+  margin: auto;
+  font-family: 'Quicksand';
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.grid-card {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+/* Colores específicos de los grid-items */
+.grid-item:nth-child(2) .grid-card {
+  background-color: #4ace71;
+}
+
+.grid-item:nth-child(3) .grid-card {
+  background-color: #5262f0;
+}
+
+.grid-item:nth-child(4) .grid-card {
+  background-color: #cf9f46;
+}
+
+.grid-item:nth-child(5) .grid-card {
+  background-color: #d13f3f;
+}
+
+.grid-item:nth-child(6) .grid-card {
+  background-color: #4cb9bd;
+}
+
+/* Tablas */
+
+#tituloTabla {
+  font-size: 25px;
+  font-family: 'Roboto';
+}
+
+/* CardDatosInventario */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-top: 8px;
+  gap: 12px;
+}
+
+.stat-label {
+  font-weight: bold;
+  text-align: left;
+}
+
+.stat-value {
+  text-align: right;
+}
