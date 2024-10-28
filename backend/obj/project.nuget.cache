@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iZzwoqquv6k=",
+  "dgSpecHash": "ASP6nv2Ytuk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\aeros\\Desktop\\SGII\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\aeros\\Desktop\\inventarioApp\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aeros\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\aeros\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

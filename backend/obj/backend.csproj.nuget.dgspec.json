@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aeros\\Desktop\\SGII\\backend\\backend.csproj": {}
+    "C:\\Users\\aeros\\Desktop\\inventarioApp\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aeros\\Desktop\\SGII\\backend\\backend.csproj": {
+    "C:\\Users\\aeros\\Desktop\\inventarioApp\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aeros\\Desktop\\SGII\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\aeros\\Desktop\\inventarioApp\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\aeros\\Desktop\\SGII\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\aeros\\Desktop\\inventarioApp\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\aeros\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aeros\\Desktop\\SGII\\backend\\obj\\",
+        "outputPath": "C:\\Users\\aeros\\Desktop\\inventarioApp\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\aeros\\AppData\\Roaming\\NuGet\\NuGet.Config",

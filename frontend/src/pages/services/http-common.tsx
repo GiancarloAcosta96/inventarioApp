@@ -7,29 +7,31 @@ const headers = {
 };
 
 const urlGeneral = "http://localhost:5134/api/";
+const urlProd =
+  "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/";
 
 const axiosPedido = axios.create({
-  baseURL: urlGeneral,
+  baseURL: urlProd,
   headers: headers,
 });
 
 const axiosProducto = axios.create({
-  baseURL: urlGeneral,
+  baseURL: urlProd,
   headers: headers,
 });
 
 const axiosCliente = axios.create({
-  baseURL: urlGeneral,
+  baseURL: urlProd,
   headers: headers,
 });
 
 const axiosUsuario = axios.create({
-  baseURL: urlGeneral,
+  baseURL: urlProd,
   headers: headers,
 });
 
 const axiosRol = axios.create({
-  baseURL: urlGeneral,
+  baseURL: urlProd,
   headers: headers,
 });
 

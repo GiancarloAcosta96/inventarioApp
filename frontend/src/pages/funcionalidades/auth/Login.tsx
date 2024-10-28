@@ -39,7 +39,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://ambitious-stone-050fd650f.5.azurestaticapps.net/login",
+        "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
         {
           nombreUsuario,
           password,
