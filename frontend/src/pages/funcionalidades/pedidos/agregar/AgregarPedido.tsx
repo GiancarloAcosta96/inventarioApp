@@ -666,7 +666,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
                 >
                   <p>Sub total: S/ {totalProductos.toFixed(2)}</p>
                   <p>IGV (18%): S/ {igv.toFixed(2)}</p>
-                  <p>IVA (15%): S/ {iva.toFixed(2)}</p>
+                  {/* <p>IVA (15%): S/ {iva.toFixed(2)}</p> */}
                 </div>
                 <br />
                 <p

@@ -105,10 +105,10 @@ const PanelDetallePedido: React.FC<PanelDetalleVentaProps> = ({
               S/ {dataDetalle?.igv}
             </div>
 
-            <div>
+            {/* <div>
               <h3>I.V.A.</h3>
               S/ {dataDetalle?.iva}
-            </div>
+            </div> */}
 
             <div>
               <h3>Total Pedido</h3>
