@@ -33,7 +33,9 @@ const editarEstadosPedidos = (data: {}) => {
 };
 
 const generarPedidoPdf = (pedidoId: string) => {
-  return axiosPedido.get(`Pedido/GenerarPdfByPedidoId?pedidoId=${pedidoId}`);
+  return axiosPedido.get(`Pedido/GenerarPdfByPedidoId?pedidoId=${pedidoId}`, {
+    responseType: "blob",
+  });
 };
 
 const eliminarPedido = (data: {}) => {

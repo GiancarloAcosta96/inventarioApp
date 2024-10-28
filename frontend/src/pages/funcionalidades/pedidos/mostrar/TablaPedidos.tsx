@@ -126,7 +126,15 @@ const TablaPedidos = () => {
   function generarPdf(pedido: string) {
     setPedidoId(pedido);
     PedidosServices.generarPedidoPdf(pedido).then((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
+        const url = window.URL.createObjectURL(res.data);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `DetallePedido_${pedido}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
         mostrarToast();
       }
     });
