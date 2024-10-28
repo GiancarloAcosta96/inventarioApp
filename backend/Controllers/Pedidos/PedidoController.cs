@@ -81,12 +81,12 @@ namespace backend.Controllers.Pedidos
 
             try
             {
-                var pdfFilePath = await _pdfGeneratorService.GeneratePdf(detallePedido);
-                return File(System.IO.File.ReadAllBytes(pdfFilePath), "application/pdf", $"DetallePedido_{detallePedido.PedidoId}.pdf");
+                var pdfBytes = await _pdfGeneratorService.GeneratePdf(detallePedido);
+                return File(pdfBytes, "application/pdf", $"DetallePedido_{detallePedido.PedidoId}.pdf");
             }
             catch (Exception ex)
             {
-                // Aquí puedes hacer un logging del error
+                // Log del error, si es necesario
                 return StatusCode(500, $"Error al generar el PDF: {ex.Message}");
             }
         }
