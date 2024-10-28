@@ -59,9 +59,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAllOrigins", corsBuilder =>
     {
         corsBuilder.WithOrigins(
-                "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/",
+                "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net",
                 "http://localhost:5134",
-                "https://localhost:5134"
+                "https://localhost:5134",
+                "http://192.168.18.64:5173"
             )
             .AllowAnyMethod()
             .AllowAnyHeader()

@@ -56,7 +56,11 @@ const Login = () => {
         navigate("/principal");
       }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      if (axios.isAxiosError(error)) {
+        console.error("Error en Axios:", error.message);
+      } else {
+        console.error("Otro error:", error);
+      }
       alert("Credenciales inválidas");
     }
   };
