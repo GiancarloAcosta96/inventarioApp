@@ -4,6 +4,6 @@ namespace backend.Application.Queries.PedidoQuery.GenerarPedidoPdf
 {
     public interface IPdfGenerador
     {
-        Task<string> GeneratePdf(DetallePedidoDTO detallePedido);
+        Task<byte[]> GeneratePdf(DetallePedidoDTO detallePedido);
     }
 }

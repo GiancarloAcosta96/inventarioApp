@@ -11,13 +11,13 @@ namespace backend.Application.Queries.PedidoQuery.GenerarPedidoPdf
 {
     public class PdfGeneratorService : IPdfGenerador
     {
-        public async Task<string> GeneratePdf(DetallePedidoDTO detallePedido)
+        public async Task<byte[]> GeneratePdf(DetallePedidoDTO detallePedido)
         {
             //var downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
             //var pdfFilePath = Path.Combine(downloadsPath, $"DetallePedido_{detallePedido.PedidoId}.pdf");
             using (var memoryStream = new MemoryStream()) 
             {
-                using (var writer = new PdfWriter(pdfFilePath))
+                using (var writer = new PdfWriter(memoryStream))
                 {
                     using (var pdfDoc = new PdfDocument(writer))
                     {
