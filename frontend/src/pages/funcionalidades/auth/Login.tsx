@@ -18,6 +18,11 @@ const useStyles = makeStyles({
     maxWidth: "400px",
     "> div": { display: "flex", flexDirection: "column", gap: "2px" },
   },
+  errorMessage: {
+    color: "red",
+    fontSize: "14px",
+    marginTop: "5px",
+  },
 });
 
 const Login = () => {
@@ -27,6 +32,7 @@ const Login = () => {
   const passwordId = useId("input-password");
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -37,10 +43,11 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(false);
     try {
       const response = await axios.post(
-        "http://localhost:5174/api/Auth/login",
-        // "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
+        // "http://192.168.18.64:5173/login"
+        "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
         {
           nombreUsuario,
           password,
@@ -57,12 +64,7 @@ const Login = () => {
         navigate("/principal");
       }
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error("Error en Axios:", error.message);
-      } else {
-        console.error("Otro error:", error);
-      }
-      alert("Credenciales inválidas");
+      setError(true);
     }
   };
 
@@ -106,6 +108,11 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {error && (
+              <span className={styles.errorMessage}>
+                Credenciales inválidas
+              </span>
+            )}
           </div>
           <Button
             appearance="primary"
