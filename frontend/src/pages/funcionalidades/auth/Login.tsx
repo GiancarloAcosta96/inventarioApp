@@ -39,7 +39,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
+        "http://localhost:5174/api/Auth/login",
+        // "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
         {
           nombreUsuario,
           password,

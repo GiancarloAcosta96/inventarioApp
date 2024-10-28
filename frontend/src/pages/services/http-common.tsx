@@ -6,32 +6,32 @@ const headers = {
   Authorization: token ? `Bearer ${token}` : "",
 };
 
-const urlGeneral = "http://localhost:5134/api/";
-const urlProd =
+// const urlGeneral = "http://192.168.18.64:5174/api/";
+const urlGeneral =
   "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/";
 
 const axiosPedido = axios.create({
-  baseURL: urlProd,
+  baseURL: urlGeneral,
   headers: headers,
 });
 
 const axiosProducto = axios.create({
-  baseURL: urlProd,
+  baseURL: urlGeneral,
   headers: headers,
 });
 
 const axiosCliente = axios.create({
-  baseURL: urlProd,
+  baseURL: urlGeneral,
   headers: headers,
 });
 
 const axiosUsuario = axios.create({
-  baseURL: urlProd,
+  baseURL: urlGeneral,
   headers: headers,
 });
 
 const axiosRol = axios.create({
-  baseURL: urlProd,
+  baseURL: urlGeneral,
   headers: headers,
 });
 

@@ -61,12 +61,13 @@ builder.Services.AddCors(options =>
         corsBuilder
             .WithOrigins(
                 "https://ambitious-stone-050fd650f.5.azurestaticapps.net",
-                "http://localhost:5173",
+                "http://192.168.18.64:5173/login",
+                "http://127.0.0.1",
                 "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net"
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithExposedHeaders("Content-Disposition")  // Si necesitas descargar archivos
+            .WithExposedHeaders("Content-Disposition")
             .AllowCredentials();
     });
 });
