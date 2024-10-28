@@ -69,6 +69,7 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
                     ClienteId = request.ClienteId,
                     EstadoPedidoId = estadoPendiente.EstadoPedidoId,
                     FechaPedido = fechaPedido,
+                    Iva = 0,
                     SeriePedido = nuevoNumeroPedido,
                     CreatedAt = limaTime
                 };

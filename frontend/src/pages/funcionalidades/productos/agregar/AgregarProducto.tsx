@@ -203,7 +203,7 @@ const AgregarProducto: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
                   </div>
 
                   <div style={{ width: "49%" }}>
-                    <Label>Cantidad en stock (S/)</Label>
+                    <Label>Cantidad en stock</Label>
                     <Input
                       name="cantidadStock"
                       style={{ display: "flex", flexDirection: "column" }}
