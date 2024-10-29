@@ -82,6 +82,7 @@ const Login = () => {
         localStorage.setItem("accesoTotal", response.data.accesoTotal);
         localStorage.setItem("usuarioId", response.data.usuarioId);
         navigate("/principal");
+        window.location.reload();
       }
     } catch (error) {
       setError(true);

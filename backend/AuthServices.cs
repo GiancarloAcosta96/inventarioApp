@@ -42,21 +42,29 @@ namespace backend
         {
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("sgii@noreply.com"),
+                From = new MailAddress("giancarloacosta.96@outlook.es"),
                 Subject = "Recuperación de contraseña",
                 Body = $"Haga clic en el siguiente enlace para restablecer su contraseña: {resetUrl}",
                 IsBodyHtml = true,
             };
             mailMessage.To.Add(email);
 
-            using (var smtpClient = new SmtpClient("smtp.gmail.com"))
+            using (var smtpClient = new SmtpClient("smtp-mail.outlook.com"))
             {
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("inventario271024@gmail.com", "271024@Citikold");
+                smtpClient.Credentials = new NetworkCredential("giancarloacosta.96@outlook.es", "Chungacosta_2211");
                 smtpClient.EnableSsl = true;
 
-                await smtpClient.SendMailAsync(mailMessage);
+                try
+                {
+                    await smtpClient.SendMailAsync(mailMessage);
+                }
+                catch (SmtpException smtpEx)
+                {
+                    throw new Exception($"SMTP error: {smtpEx.Message}");
+                }
             }
         }
+
     }
 }
