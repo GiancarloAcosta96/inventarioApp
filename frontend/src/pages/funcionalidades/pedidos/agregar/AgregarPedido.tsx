@@ -107,22 +107,17 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
   );
 
   const handleCrearPedido = async () => {
+    setIsLoading(true);
     try {
-      const response = await axios.post("/api/pedido", {
-        usuarioId: 1,
-        clienteId: 1,
-        fechaPedido: "27-10-2024",
-        productos: [
-          { productoId: 1, cantidad: 2 },
-          { productoId: 2, cantidad: 1 },
-        ],
+      PedidosServices.crearPedido(dataAgregarPedido).then((response) => {
+        if (response.data.success) {
+          setIsLoading(false);
+          setMensaje(response.data.message);
+        } else {
+          setIsLoading(false);
+          setMensaje(response.data.message);
+        }
       });
-
-      if (response.data.success) {
-        setMensaje(response.data.message);
-      } else {
-        setMensaje(response.data.message);
-      }
     } catch (error) {
       setMensaje("Ocurrió un error al crear el pedido");
     }
