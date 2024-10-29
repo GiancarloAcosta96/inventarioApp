@@ -117,11 +117,9 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
         if (res.data) {
           reload();
           setMensaje(res.data);
+          setIsLoading(false);
           setTimeout(() => {
             handleClose();
-            setTimeout(() => {
-              setIsLoading(false);
-            }, 1000);
           }, 2000);
         } else {
           setMensaje(res.data);
