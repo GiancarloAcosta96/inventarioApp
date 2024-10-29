@@ -125,7 +125,6 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
           setTimeout(() => {
             handleClose();
             setTimeout(() => {
-              setReducirTabla(false);
               setIsTabla(true);
             });
           }, 2000);
@@ -144,7 +143,6 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
         setTimeout(() => {
           handleClose();
           setTimeout(() => {
-            setReducirTabla(false);
             setIsTabla(true);
           });
         }, 2000);
