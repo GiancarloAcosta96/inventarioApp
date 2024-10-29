@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,22 +5,18 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import {
-  FluentProvider,
-  webDarkTheme,
-  webLightTheme,
-} from "@fluentui/react-components";
+import { FluentProvider, webDarkTheme } from "@fluentui/react-components";
 import AuthLayout from "./pages/funcionalidades/auth/AuthLayout";
 import Login from "./pages/funcionalidades/auth/Login";
 import ProtectedRoute from "./pages/funcionalidades/auth/ProtectedRoute";
 import ProtectedLayout from "./pages/funcionalidades/auth/ProtectedLayout";
 import PaginaPrincipal from "./pages/funcionalidades/principal/PaginaPrincipal";
-import ListarPedidos from "./pages/funcionalidades/pedidos/mostrar/TablaPedidos";
 import TablaPedidos from "./pages/funcionalidades/pedidos/mostrar/TablaPedidos";
 import TablaProductos from "./pages/funcionalidades/productos/mostrar/TablaProductos";
 import TablaClientes from "./pages/funcionalidades/clientes/mostrar/TablaClientes";
 import TablaUsuarios from "./pages/funcionalidades/usuarios/mostrar/TablaUsuarios";
 import TablaRoles from "./pages/funcionalidades/roles/mostrar/TablaRoles";
+import RecuperarContraseña from "./pages/funcionalidades/auth/RecuperarContraseña";
 
 function App() {
   return (
@@ -30,6 +25,10 @@ function App() {
         <Routes>
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
+            <Route
+              path="/recuperarPassword"
+              element={<RecuperarContraseña />}
+            />
             <Route path="*" element={<Navigate to="/login" />} />
           </Route>
 

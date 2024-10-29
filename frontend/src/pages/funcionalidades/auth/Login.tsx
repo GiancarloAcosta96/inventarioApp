@@ -5,10 +5,11 @@ import {
   makeStyles,
   Image,
   useId,
+  Spinner,
 } from "@fluentui/react-components";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import inventarioImage from "../../../assets/inventario.jpg";
 
 const useStyles = makeStyles({
@@ -50,6 +51,7 @@ const Login = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -61,6 +63,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(false);
+    setLoading(true);
     try {
       const response = await axios.post(
         //"http://192.168.18.64/:5134/login",
@@ -82,6 +85,8 @@ const Login = () => {
       }
     } catch (error) {
       setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,6 +129,9 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <Link to="/recuperarPassword">
+              <span>Olvidé la contraseña</span>
+            </Link>
             {error && (
               <span className={styles.errorMessage}>
                 Credenciales inválidas
@@ -141,6 +149,7 @@ const Login = () => {
           >
             Ingresar
           </Button>
+          {loading && <Spinner />}
         </form>
       </div>
     </div>
