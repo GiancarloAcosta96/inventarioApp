@@ -6,6 +6,7 @@ using backend.Application.Queries.ProductoQuery.DetalleProducto;
 using backend.Application.Queries.UsuarioQuery.DetalleUsuario;
 using backend.Application.Queries.UsuarioQuery.ListarUsuarios;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace backend.Controllers.Usuarios
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuarioController: ControllerBase
     {
         private readonly IMediator _mediator;

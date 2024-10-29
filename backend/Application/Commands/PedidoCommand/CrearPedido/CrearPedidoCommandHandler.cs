@@ -38,6 +38,11 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
                     throw new Exception("El formato de la fecha es incorrecto. Debe ser dd-MM-yyyy.");
                 }
 
+                if (fechaPedido > limaTime)
+                {
+                    throw new Exception("La fecha de pedido no puede ser mayor a la fecha actual.");
+                }
+
                 var estadoPendiente = await _context.EstadoPedidos
                     .Where(e => e.DeletedAt == null && e.NombreEstadoPedido == "Pendiente")
                     .FirstOrDefaultAsync();
@@ -82,6 +87,11 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
 
                     if (producto != null)
                     {
+                        if (producto.CantidadStock < prods.Cantidad)
+                        {
+                            throw new Exception($"No hay suficiente stock para el producto: {producto.Nombre}");
+                        }
+
                         var subtotal = prods.Cantidad * producto.Precio;
                         subtotalTotal += subtotal;
 
@@ -94,6 +104,9 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
                             Subtotal = subtotal,
                         };
                         _context.DetallePedidos.Add(productoPedido);
+
+                        producto.CantidadStock -= prods.Cantidad;
+                        _context.Productos.Update(producto);
                     }
                     else
                     {

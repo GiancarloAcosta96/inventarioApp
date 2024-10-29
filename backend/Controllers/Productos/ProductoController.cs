@@ -5,12 +5,14 @@ using backend.Application.Queries.ProductoQuery.DetalleProducto;
 using backend.Application.Queries.ProductoQuery.InventarioQuery;
 using backend.Application.Queries.ProductoQuery.ListarProductos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers.Productos
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductoController: ControllerBase
     {
         private readonly IMediator mediator;

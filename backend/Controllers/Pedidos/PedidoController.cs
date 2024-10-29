@@ -17,7 +17,7 @@ namespace backend.Controllers.Pedidos
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class PedidoController: ControllerBase
     {
         private readonly IMediator mediator;

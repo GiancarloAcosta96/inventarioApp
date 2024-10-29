@@ -6,12 +6,14 @@ using backend.Application.Queries.RolQuery.DetalleRol;
 using backend.Application.Queries.RolQuery.ListarRoles;
 using backend.Application.Queries.RolQuery.ListarRolesCombo;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers.Roles
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RolController: ControllerBase
     {
         private readonly IMediator mediator;

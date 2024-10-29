@@ -5,12 +5,14 @@ using backend.Application.Queries.ClienteQuery.DetalleCliente;
 using backend.Application.Queries.ClienteQuery.ListarClientes;
 using backend.Application.Queries.ClienteQuery.ListarClientesCombo;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers.Clientes
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClientesController: ControllerBase
     {
         private readonly IMediator mediator;

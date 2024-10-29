@@ -30,7 +30,7 @@
 }
 
 #loginPrincipal #logo {
-  max-width: 100%;
+  width: 100%;
   max-height: 100%;
   display: flex;
   align-items: center;
@@ -41,7 +41,7 @@
 }
 
 #loginPrincipal #izquierda {
-  width: 50%;
+  width: 60%;
   height: 100%;
   display: flex;
   background-color: #111;
@@ -54,12 +54,16 @@
 }
 
 #loginPrincipal #derecha {
-  width: 50%;
+  width: 40%;
   background-color: #000;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#loginPrincipal #tituloSistema {
+  font-family: 'Quicksand';
 }
 
 #loginPrincipal #derecha #formulario {
@@ -69,6 +73,19 @@
 #loginPrincipal #derecha #formulario #usuario,
 #loginPrincipal #derecha #formulario #password {
   color: white;
+}
+
+@media (max-width: 768px) {
+  #formulario {
+     padding: "10px"
+  }
+  #loginPrincipal #izquierda {
+    display: none;
+  }
+
+  #loginPrincipal #derecha {
+    width: 100%;
+  }
 }
 
 /* Topbar */

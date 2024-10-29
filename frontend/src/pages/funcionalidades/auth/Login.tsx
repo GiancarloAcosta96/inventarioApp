@@ -3,11 +3,13 @@ import {
   Input,
   Label,
   makeStyles,
+  Image,
   useId,
 } from "@fluentui/react-components";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import inventarioImage from "../../../assets/inventario.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -22,6 +24,21 @@ const useStyles = makeStyles({
     color: "red",
     fontSize: "14px",
     marginTop: "5px",
+  },
+  imageContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "60%",
+    height: "100%",
+  },
+  image: {
+    width: "100%",
+    maxHeight: "100%",
+    objectFit: "contain",
+  },
+  hiddenOnMobile: {
+    display: "none",
   },
 });
 
@@ -46,8 +63,8 @@ const Login = () => {
     setError(false);
     try {
       const response = await axios.post(
-        // "http://192.168.18.64:5173/login"
-        "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
+        "http://192.168.18.64/:5134/login",
+        //"https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
         {
           nombreUsuario,
           password,
@@ -70,16 +87,14 @@ const Login = () => {
 
   return (
     <div id="loginPrincipal" style={{ display: "flex" }}>
-      <div
-        id="izquierda"
-        style={{
-          flex: 1,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h2 id="logo">Sistema de inventario</h2>
+      <div id="izquierda" className={styles.imageContainer}>
+        <h2 id="logo" className={styles.hiddenOnMobile}>
+          <Image
+            alt="Allan's avatar"
+            src={inventarioImage}
+            className={styles.image}
+          />
+        </h2>
       </div>
 
       <div id="derecha" style={{ flex: 1 }}>
@@ -89,6 +104,7 @@ const Login = () => {
           className={styles.root}
           onSubmit={handleSubmit}
         >
+          <h2 id="tituloSistema">Sistema de Inventario inteligente (SGII)</h2>
           <div>
             <Label id="usuario">Ingresa tu usuario</Label>
             <Input
