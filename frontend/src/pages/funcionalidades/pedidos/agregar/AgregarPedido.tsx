@@ -111,11 +111,15 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
     try {
       PedidosServices.crearPedido(dataAgregarPedido).then((response) => {
         if (response.data.success) {
-          setIsLoading(false);
           setMensaje(response.data.message);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 2000);
         } else {
-          setIsLoading(false);
           setMensaje(response.data.message);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 2000);
         }
       });
     } catch (error) {
@@ -746,6 +750,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
               </div>
             </div>
           )}
+          {mensaje && <p>{mensaje}</p>}
         </DrawerBody>
       </OverlayDrawer>
     </>
