@@ -1,6 +1,5 @@
 using backend;
 using backend.Application.Queries.PedidoQuery.GenerarPedidoPdf;
-using backend.Controllers.Auth;
 using backend.Data;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

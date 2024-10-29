@@ -22,6 +22,8 @@ namespace backend.Application.Queries.PedidoQuery.GenerarPedidoPdf
                     using (var pdfDoc = new PdfDocument(writer))
                     {
                         var document = new Document(pdfDoc);
+                        var cultureInfo = new System.Globalization.CultureInfo("es-PE");
+                        cultureInfo.NumberFormat.CurrencySymbol = "S/";
 
                         var headerTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 3 })).UseAllAvailableWidth();
                         headerTable.AddCell(new Cell().Add(new Paragraph("SGII").SetFontSize(20).SetBold()).SetBorder(Border.NO_BORDER));
@@ -68,7 +70,7 @@ namespace backend.Application.Queries.PedidoQuery.GenerarPedidoPdf
                         {
                             orderDetailsTable.AddCell(new Cell().Add(new Paragraph(producto.NombreProducto)));
                             orderDetailsTable.AddCell(new Cell().Add(new Paragraph(producto.Cantidad.ToString())));
-                            orderDetailsTable.AddCell(new Cell().Add(new Paragraph(producto.Precio.ToString("C2"))));
+                            orderDetailsTable.AddCell(new Cell().Add(new Paragraph(producto.Precio.ToString("C2", cultureInfo))));
                         }
                         document.Add(orderDetailsTable);
 
@@ -77,13 +79,10 @@ namespace backend.Application.Queries.PedidoQuery.GenerarPedidoPdf
                         .SetHorizontalAlignment(HorizontalAlignment.RIGHT);
 
                         summaryTable.AddCell(new Cell().Add(new Paragraph("IGV").SetFontSize(9)));
-                        summaryTable.AddCell(new Cell().Add(new Paragraph(detallePedido.Igv.ToString("C2")).SetFontSize(9)).SetTextAlignment(TextAlignment.RIGHT));
-
-                        summaryTable.AddCell(new Cell().Add(new Paragraph("IVA").SetFontSize(9)));
-                        summaryTable.AddCell(new Cell().Add(new Paragraph(detallePedido.Iva.ToString("C2")).SetFontSize(9)).SetTextAlignment(TextAlignment.RIGHT));
+                        summaryTable.AddCell(new Cell().Add(new Paragraph(detallePedido.Igv.ToString("C2", cultureInfo)).SetFontSize(9)).SetTextAlignment(TextAlignment.RIGHT));
 
                         summaryTable.AddCell(new Cell().Add(new Paragraph("Total").SetBold()));
-                        summaryTable.AddCell(new Cell().Add(new Paragraph(detallePedido.Total.ToString("C2")).SetBold()).SetTextAlignment(TextAlignment.RIGHT));
+                        summaryTable.AddCell(new Cell().Add(new Paragraph(detallePedido.Total.ToString("C2", cultureInfo)).SetBold()).SetTextAlignment(TextAlignment.RIGHT));
 
                         document.Add(summaryTable);
 
