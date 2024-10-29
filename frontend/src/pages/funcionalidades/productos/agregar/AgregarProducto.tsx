@@ -65,7 +65,6 @@ const AgregarProducto: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
           message: "Ocurrió un error inesperado.",
           succes: false,
         };
-        console.log(respuesta);
         setRespuesta(errorMessage);
         setMostrarSpinner(false);
         setMostrarMensaje(true);

@@ -36,7 +36,7 @@ namespace backend.Controllers.Auth
         {
             var usuario = await _context.Usuarios
                 .Include(u => u.Rol)
-                .SingleOrDefaultAsync(u => u.NombreUsuario == request.NombreUsuario);
+                .SingleOrDefaultAsync(u => u.NombreUsuario == request.NombreUsuario && u.DeletedAt == null);
 
             if (usuario == null)
             {

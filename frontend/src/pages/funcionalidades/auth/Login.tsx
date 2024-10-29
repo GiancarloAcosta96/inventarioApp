@@ -50,7 +50,7 @@ const Login = () => {
   const passwordId = useId("input-password");
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -62,8 +62,8 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(false);
     setLoading(true);
+
     try {
       const response = await axios.post(
         //"http://192.168.18.64/:5134/login",
@@ -85,7 +85,11 @@ const Login = () => {
         window.location.reload();
       }
     } catch (error) {
-      setError(true);
+      if (axios.isAxiosError(error) && error.response) {
+        setError(error.response.data.message || "Error desconocido");
+      } else {
+        setError("Ocurrió un error inesperado");
+      }
     } finally {
       setLoading(false);
     }
@@ -136,11 +140,7 @@ const Login = () => {
             >
               <span style={{ color: "#2465c7" }}>Olvidé la contraseña</span>
             </Link>
-            {error && (
-              <span className={styles.errorMessage}>
-                Credenciales inválidas
-              </span>
-            )}
+            {error && <span className={styles.errorMessage}>{error}</span>}
           </div>
           <Button
             appearance="primary"
