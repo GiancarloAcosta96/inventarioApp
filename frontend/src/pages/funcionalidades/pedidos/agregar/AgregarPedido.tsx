@@ -74,6 +74,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
   const [empresa, setEmpresa] = useState("");
   const [detalleEmpresa, setDetalleEmpresa] = useState<IDetalleCliente>(null!);
   const [isLoading, setIsLoading] = useState(true);
+  const [reducirTabla, setReducirTabla] = useState(true);
   const [isTabla, setIsTabla] = useState(true);
   const [value, setValue] = useState<Date | undefined>(null!);
   const pageSize = 11;
@@ -113,6 +114,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
 
   const handleCrearPedido = async () => {
     setIsLoading(true);
+    setReducirTabla(true);
     setIsTabla(false);
     PedidosServices.crearPedido(dataAgregarPedido)
       .then((res) => {
@@ -123,6 +125,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
           setTimeout(() => {
             handleClose();
             setTimeout(() => {
+              setReducirTabla(false);
               setIsTabla(true);
             });
           }, 2000);
@@ -141,6 +144,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
         setTimeout(() => {
           handleClose();
           setTimeout(() => {
+            setReducirTabla(false);
             setIsTabla(true);
           });
         }, 2000);
@@ -343,7 +347,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
     <>
       <OverlayDrawer
         position="end"
-        style={{ width: isLoading ? "20%" : "80%" }}
+        style={{ width: reducirTabla ? "20%" : "80%" }}
         as="aside"
         open={isOpen}
       >
