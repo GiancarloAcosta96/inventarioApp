@@ -87,11 +87,7 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
 
                     if (producto != null)
                     {
-                        if (producto.CantidadStock < prods.Cantidad)
-                        {
-                            throw new Exception($"No hay suficiente stock para el producto: {producto.NombreProducto}");
-                        }
-
+                        
                         var subtotal = prods.Cantidad * producto.Precio;
                         subtotalTotal += subtotal;
 
@@ -104,9 +100,6 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
                             Subtotal = subtotal,
                         };
                         _context.DetallePedidos.Add(productoPedido);
-
-                        producto.CantidadStock -= prods.Cantidad;
-                        _context.Productos.Update(producto);
                     }
                     else
                     {
