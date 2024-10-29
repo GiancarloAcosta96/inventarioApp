@@ -63,8 +63,8 @@ const Login = () => {
     setError(false);
     try {
       const response = await axios.post(
-        "http://192.168.18.64/:5134/login",
-        //"https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
+        //"http://192.168.18.64/:5134/login",
+        "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/Auth/login",
         {
           nombreUsuario,
           password,

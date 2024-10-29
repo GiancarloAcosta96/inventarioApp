@@ -6,9 +6,9 @@ const headers = {
   Authorization: token ? `Bearer ${token}` : "",
 };
 
-const urlGeneral = "http://192.168.18.64:5173/api/";
-// const urlGeneral =
-//   "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/";
+//const urlGeneral = "http://192.168.18.64:5173/api/";
+const urlGeneral =
+  "https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/api/";
 
 const axiosPedido = axios.create({
   baseURL: urlGeneral,
