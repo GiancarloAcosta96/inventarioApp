@@ -79,7 +79,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sistema Inventario API", Version = "v1" });
 });
 
-// Quitar la configuración fija del puerto para Azure
 if (builder.Environment.IsDevelopment())
 {
     builder.WebHost.ConfigureKestrel(options =>

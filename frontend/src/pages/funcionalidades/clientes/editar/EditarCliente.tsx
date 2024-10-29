@@ -9,12 +9,9 @@ import {
   DialogTrigger,
   Button,
   Label,
-  Textarea,
   Spinner,
 } from "@fluentui/react-components";
 import React, { useEffect, useState } from "react";
-import { IEditarProducto } from "../../../interfaces/IProductos";
-import ProductosServices from "../../../services/productos/ProductosServices";
 import {
   CheckmarkCircleRegular,
   ErrorCircleRegular,

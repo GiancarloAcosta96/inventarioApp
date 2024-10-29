@@ -9,9 +9,7 @@ import {
   DialogTrigger,
   Button,
   Label,
-  Option,
   Spinner,
-  Combobox,
   Checkbox,
 } from "@fluentui/react-components";
 import React, { useEffect, useState } from "react";
@@ -20,9 +18,7 @@ import {
   ErrorCircleRegular,
 } from "@fluentui/react-icons";
 import { IEditar } from "../../../../components/InterfaceProps";
-import { IEditarUsuario, IRolCombo } from "../../../interfaces/IUsuarios";
 import RolesServices from "../../../services/roles/RolesServices";
-import UsuariosServices from "../../../services/usuarios/UsuariosServices";
 import { IEditarRol } from "../../../interfaces/IRoles";
 
 const EditarRol: React.FC<IEditar> = ({ isOpen, isClose, reload, id }) => {

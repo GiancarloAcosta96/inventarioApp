@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { IDataInventario } from "../../interfaces/IProductos";
 
 const PaginaPrincipal = () => {
+  const acceso = localStorage.getItem("accesoTotal");
   const [dataInventario, setDataInventario] = useState<IDataInventario>({
     totalProducto: 0,
     totalInventario: 0,
@@ -77,41 +78,45 @@ const PaginaPrincipal = () => {
         </Card>
       </Link>
 
-      <Link className="grid-item" to="/productos">
-        <Card className="grid-card">
-          <BoxRegular
-            style={{ fontSize: "100px", display: "flex", margin: "auto" }}
-          />
-          <h2>Productos</h2>
-        </Card>
-      </Link>
+      {acceso == "1" && (
+        <>
+          <Link className="grid-item" to="/productos">
+            <Card className="grid-card">
+              <BoxRegular
+                style={{ fontSize: "100px", display: "flex", margin: "auto" }}
+              />
+              <h2>Productos</h2>
+            </Card>
+          </Link>
 
-      <Link className="grid-item" to="/clientes">
-        <Card className="grid-card">
-          <PeopleTeamToolboxRegular
-            style={{ fontSize: "100px", display: "flex", margin: "auto" }}
-          />
-          <h2>Clientes</h2>
-        </Card>
-      </Link>
+          <Link className="grid-item" to="/clientes">
+            <Card className="grid-card">
+              <PeopleTeamToolboxRegular
+                style={{ fontSize: "100px", display: "flex", margin: "auto" }}
+              />
+              <h2>Clientes</h2>
+            </Card>
+          </Link>
 
-      <Link className="grid-item" to="/usuarios">
-        <Card className="grid-card">
-          <PersonBoardRegular
-            style={{ fontSize: "100px", display: "flex", margin: "auto" }}
-          />
-          <h2>Usuarios</h2>
-        </Card>
-      </Link>
+          <Link className="grid-item" to="/usuarios">
+            <Card className="grid-card">
+              <PersonBoardRegular
+                style={{ fontSize: "100px", display: "flex", margin: "auto" }}
+              />
+              <h2>Usuarios</h2>
+            </Card>
+          </Link>
 
-      <Link className="grid-item" to="/roles">
-        <Card className="grid-card">
-          <SlideTextPersonRegular
-            style={{ fontSize: "100px", display: "flex", margin: "auto" }}
-          />
-          <h2>Roles</h2>
-        </Card>
-      </Link>
+          <Link className="grid-item" to="/roles">
+            <Card className="grid-card">
+              <SlideTextPersonRegular
+                style={{ fontSize: "100px", display: "flex", margin: "auto" }}
+              />
+              <h2>Roles</h2>
+            </Card>
+          </Link>
+        </>
+      )}
     </div>
   );
 };

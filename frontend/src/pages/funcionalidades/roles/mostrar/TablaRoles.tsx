@@ -7,28 +7,17 @@ import {
   TableBody,
   TableCell,
   TableCellLayout,
-  Text,
 } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
 import { useEffect, useState } from "react";
-import PedidosServices from "../../../services/pedidos/PedidosServices";
-import { IPedidos } from "../../../interfaces/IPedidos";
 import {
   AddRegular,
   ArrowClockwiseRegular,
-  ArrowLeftRegular,
-  ArrowRightRegular,
   BackspaceRegular,
   EditRegular,
 } from "@fluentui/react-icons";
 import Paginacion from "../../../../components/Paginacion";
 import { useNavigate } from "react-router-dom";
-import { IProductos } from "../../../interfaces/IProductos";
-import ProductosServices from "../../../services/productos/ProductosServices";
-import ClientesServices from "../../../services/clientes/ClientesServices";
-import { IClientes } from "../../../interfaces/IClientes";
-import { IUsuarios } from "../../../interfaces/IUsuarios";
-import UsuariosServices from "../../../services/usuarios/UsuariosServices";
 import { IRoles } from "../../../interfaces/IRoles";
 import RolesServices from "../../../services/roles/RolesServices";
 import TableSkeleton from "../../../../components/TablaCarga";

@@ -4,29 +4,19 @@ import {
   DialogBody,
   DialogTitle,
   DialogContent,
-  Input,
   DialogActions,
   DialogTrigger,
   Button,
-  Label,
-  Textarea,
   Spinner,
 } from "@fluentui/react-components";
 import React, { useEffect, useState } from "react";
-import {
-  IAgregarProducto,
-  IEliminarProducto,
-} from "../../../interfaces/IProductos";
+import { IEliminarProducto } from "../../../interfaces/IProductos";
 import ProductosServices from "../../../services/productos/ProductosServices";
 import {
   CheckmarkCircleRegular,
   ErrorCircleRegular,
 } from "@fluentui/react-icons";
-import {
-  IAgregar,
-  IEditar,
-  IEliminar,
-} from "../../../../components/InterfaceProps";
+import { IEliminar } from "../../../../components/InterfaceProps";
 
 const EliminarProducto: React.FC<IEliminar> = ({
   isOpen,

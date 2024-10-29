@@ -480,25 +480,26 @@ const TablaPedidos = () => {
                             />
                           )}
 
-                          {item.estadoPedido == "Rechazado" && (
-                            <Button
-                              icon={<DeleteRegular />}
-                              style={{
-                                border: "none",
-                                backgroundColor: "#b92d2d",
-                              }}
-                              title="Eliminar Pedido"
-                              onClick={() => {
-                                if (item.pedidoId) {
-                                  setPedidoId(item.pedidoId);
-                                  openPanelEliminarPedido();
-                                } else {
-                                  console.error("PedidoId is undefined");
-                                }
-                              }}
-                              aria-label="Eliminar"
-                            />
-                          )}
+                          {item.estadoPedido == "Rechazado" &&
+                            acceso == "1" && (
+                              <Button
+                                icon={<DeleteRegular />}
+                                style={{
+                                  border: "none",
+                                  backgroundColor: "#b92d2d",
+                                }}
+                                title="Eliminar Pedido"
+                                onClick={() => {
+                                  if (item.pedidoId) {
+                                    setPedidoId(item.pedidoId);
+                                    openPanelEliminarPedido();
+                                  } else {
+                                    console.error("PedidoId is undefined");
+                                  }
+                                }}
+                                aria-label="Eliminar"
+                              />
+                            )}
                         </TableCellLayout>
                       </TableCell>
                     </TableRow>

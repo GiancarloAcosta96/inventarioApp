@@ -775,7 +775,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
             </div>
           )}
 
-          {mensaje && <p>{mensaje.message}</p>}
+          {mensaje && <p style={{ fontSize: "20px" }}>{mensaje.message}</p>}
         </DrawerBody>
       </OverlayDrawer>
     </>
