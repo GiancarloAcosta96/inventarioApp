@@ -74,6 +74,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
   const [empresa, setEmpresa] = useState("");
   const [detalleEmpresa, setDetalleEmpresa] = useState<IDetalleCliente>(null!);
   const [isLoading, setIsLoading] = useState(true);
+  const [isTabla, setIsTabla] = useState(true);
   const [value, setValue] = useState<Date | undefined>(null!);
   const pageSize = 11;
 
@@ -112,6 +113,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
 
   const handleCrearPedido = async () => {
     setIsLoading(true);
+    setIsTabla(false);
     PedidosServices.crearPedido(dataAgregarPedido)
       .then((res) => {
         if (res.data) {
@@ -120,6 +122,9 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
           setIsLoading(false);
           setTimeout(() => {
             handleClose();
+            setTimeout(() => {
+              setIsTabla(true);
+            });
           }, 2000);
         } else {
           setMensaje(res.data);
@@ -132,12 +137,13 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
           succes: false,
         };
         setMensaje(errorMessage);
+        setIsLoading(false);
         setTimeout(() => {
           handleClose();
           setTimeout(() => {
-            setIsLoading(false);
-          }, 1800);
-        }, 1000);
+            setIsTabla(true);
+          });
+        }, 2000);
       });
   };
 
@@ -357,7 +363,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
         </DrawerHeader>
 
         <DrawerBody>
-          {isLoading ? (
+          {isLoading && (
             <div
               style={{
                 display: "flex",
@@ -368,7 +374,9 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
             >
               <Spinner />
             </div>
-          ) : (
+          )}
+
+          {isTabla && (
             <div
               style={{
                 height: "100%",
@@ -764,6 +772,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
               </div>
             </div>
           )}
+
           {mensaje && <p>{mensaje.message}</p>}
         </DrawerBody>
       </OverlayDrawer>
