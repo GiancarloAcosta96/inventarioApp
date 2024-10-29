@@ -42,7 +42,7 @@ namespace backend
         {
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("inventario271024@gmail.com"),
+                From = new MailAddress("giancarloacosta.96@outlook.es"),
                 Subject = "Recuperación de contraseña",
                 Body = $"Haga clic en el siguiente enlace para restablecer su contraseña: {resetUrl}",
                 IsBodyHtml = true,
@@ -52,7 +52,7 @@ namespace backend
             using (var smtpClient = new SmtpClient("smtp.office365.com"))
             {
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("inventario271024@gmail.com", "271024@Citikold");
+                smtpClient.Credentials = new NetworkCredential("giancarloacosta.96@outlook.es", "Chungacosta_2211");
                 smtpClient.EnableSsl = true;
                 try
                 {
