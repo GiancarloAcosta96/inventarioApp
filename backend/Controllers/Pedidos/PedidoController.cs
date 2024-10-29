@@ -53,9 +53,14 @@ namespace backend.Controllers.Pedidos
             {
                 return BadRequest("Error en la data al crear Pedido");
             }
-            await mediator.Send(command, cancellationToken);
+            var resultado = await mediator.Send(command, cancellationToken);
 
-            return Ok();
+            if (resultado.Success)
+            {
+                return Ok(resultado);
+            }
+
+            return BadRequest(resultado);
         }
 
         // Get: Obtener pedido by id
