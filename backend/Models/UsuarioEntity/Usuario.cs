@@ -10,6 +10,7 @@ namespace backend.Models.UsuarioEntity
         public string NombreUsuario { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public int? IntentosFailidos { get; set; }
         public DateTime FechaRegistro { get; set; }
         public DateTime? UltimoAcceso { get; set; }
         public Rol Rol { get; set; }

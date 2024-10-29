@@ -38,13 +38,40 @@ namespace backend.Controllers.Auth
                 .Include(u => u.Rol)
                 .SingleOrDefaultAsync(u => u.NombreUsuario == request.NombreUsuario);
 
-            if (usuario == null || !VerifyPassword(request.Password, usuario.Password) || usuario.DeletedAt != null)
+            if (usuario == null)
             {
                 return Unauthorized(new { message = "Credenciales inválidas" });
             }
 
+            if (usuario.DeletedAt != null)
+            {
+                return Unauthorized(new { message = "Cuenta bloqueada por múltiples intentos fallidos. Contacte al administrador." });
+            }
+
+            if (!VerifyPassword(request.Password, usuario.Password))
+            {
+                usuario.IntentosFailidos = (usuario.IntentosFailidos ?? 0) + 1;
+
+                if (usuario.IntentosFailidos >= 5)
+                {
+                    usuario.DeletedAt = DateTime.UtcNow;
+                    await _context.SaveChangesAsync();
+                    return Unauthorized(new { message = "Cuenta bloqueada por múltiples intentos fallidos. Contacte al administrador." });
+                }
+
+                await _context.SaveChangesAsync();
+                return Unauthorized(new
+                {
+                    message = "Credenciales inválidas",
+                    intentosRestantes = 5 - usuario.IntentosFailidos
+                });
+            }
+
+            // Si la contraseña es correcta, reiniciar el contador de intentos
+            usuario.IntentosFailidos = 0;
+
             var token = _authService.GenerateJwtToken(usuario);
-            
+
             var tokenAuth = new TokensAuth
             {
                 UsuarioId = usuario.UsuarioId,
@@ -54,7 +81,6 @@ namespace backend.Controllers.Auth
                 Usado = false
             };
 
-            
             _context.TokensAuth.Add(tokenAuth);
             await _context.SaveChangesAsync();
 
