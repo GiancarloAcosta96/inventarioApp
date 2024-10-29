@@ -61,7 +61,11 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
   });
   const today = new Date();
   const usuarioId = localStorage.getItem("usuarioId");
-  const [mensaje, setMensaje] = useState("");
+  const [mensaje, setMensaje] = useState({
+    message: "",
+    success: false,
+    title: "",
+  });
   const [dataProductos, setDataProductos] = useState<IProductos[]>([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
@@ -108,23 +112,35 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
 
   const handleCrearPedido = async () => {
     setIsLoading(true);
-    try {
-      PedidosServices.crearPedido(dataAgregarPedido).then((response) => {
-        if (response.data.success) {
-          setMensaje(response.data.message);
+    PedidosServices.crearPedido(dataAgregarPedido)
+      .then((res) => {
+        if (res.data) {
+          reload();
+          setMensaje(res.data);
           setTimeout(() => {
-            setIsLoading(false);
+            handleClose();
+            setTimeout(() => {
+              setIsLoading(false);
+            }, 1000);
           }, 2000);
         } else {
-          setMensaje(response.data.message);
+          setMensaje(res.data);
+        }
+      })
+      .catch((error) => {
+        const errorMessage = error.response?.data ?? {
+          title: "Error",
+          message: "Ocurrió un error inesperado.",
+          succes: false,
+        };
+        setMensaje(errorMessage);
+        setTimeout(() => {
+          handleClose();
           setTimeout(() => {
             setIsLoading(false);
-          }, 2000);
-        }
+          }, 1800);
+        }, 1000);
       });
-    } catch (error) {
-      setMensaje("Ocurrió un error al crear el pedido");
-    }
   };
 
   function obtenerProductos(pageNumber = 1) {
@@ -750,7 +766,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
               </div>
             </div>
           )}
-          {mensaje && <p>{mensaje}</p>}
+          {mensaje && <p>{mensaje.message}</p>}
         </DrawerBody>
       </OverlayDrawer>
     </>
