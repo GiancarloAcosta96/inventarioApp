@@ -347,7 +347,7 @@ const AgregarPedido: React.FC<IAgregar> = ({ isOpen, isClose, reload }) => {
     <>
       <OverlayDrawer
         position="end"
-        style={{ width: reducirTabla ? "20%" : "80%" }}
+        style={{ width: !reducirTabla ? "20%" : "80%" }}
         as="aside"
         open={isOpen}
       >
