@@ -129,8 +129,11 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Link to="/recuperarPassword">
-              <span>Olvidé la contraseña</span>
+            <Link
+              style={{ listStyle: "none", textDecoration: "none" }}
+              to="/recuperarPassword"
+            >
+              <span style={{ color: "#2465c7" }}>Olvidé la contraseña</span>
             </Link>
             {error && (
               <span className={styles.errorMessage}>

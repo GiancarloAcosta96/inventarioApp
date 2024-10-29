@@ -1,4 +1,4 @@
-import { Label, Input, Button } from "@fluentui/react-components";
+import { Label, Input, Button, Spinner } from "@fluentui/react-components";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,11 @@ const RecuperarContraseña = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
         //"http://192.168.18.64/:5134/login",
@@ -26,6 +28,8 @@ const RecuperarContraseña = () => {
       }
     } catch (error) {
       setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,10 +52,27 @@ const RecuperarContraseña = () => {
         onSubmit={handleSubmit}
         style={{
           width: "20%",
-          height: "20vh",
+          height: "30vh",
           textAlign: "center",
         }}
       >
+        <Button
+          onClick={() => {
+            navigate("/login");
+          }}
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: "20px",
+            backgroundColor: "transparent",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "20px",
+          }}
+        >
+          ← Atrás
+        </Button>
         <h2>Recuperar Contraseña</h2>
         <div>
           <Label htmlFor="email" style={{ color: "white" }}>
@@ -87,7 +108,7 @@ const RecuperarContraseña = () => {
           appearance="primary"
           type="submit"
           style={{
-            marginTop: "20px",
+            margin: "20px 0",
             backgroundColor: "#2052be",
             color: "white",
             border: "none",
@@ -99,6 +120,7 @@ const RecuperarContraseña = () => {
         >
           Enviar correo
         </Button>
+        {loading && <Spinner />}
       </form>
     </div>
   );
