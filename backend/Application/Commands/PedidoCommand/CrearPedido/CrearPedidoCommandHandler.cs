@@ -89,7 +89,7 @@ namespace backend.Application.Commands.PedidoCommand.CrearPedido
                     {
                         if (producto.CantidadStock < prods.Cantidad)
                         {
-                            throw new Exception($"No hay suficiente stock para el producto: {producto.Nombre}");
+                            throw new Exception($"No hay suficiente stock para el producto: {producto.NombreProducto}");
                         }
 
                         var subtotal = prods.Cantidad * producto.Precio;
