@@ -12,6 +12,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using backend.Helper;
 
 namespace backend.Controllers.Auth
 {
@@ -134,38 +135,60 @@ namespace backend.Controllers.Auth
         }
 
         //AQuí recupero  contraseña
-        //Envío de enlace
         [HttpPost("request-password-reset")]
-        public async Task<IActionResult> RequestPasswordReset([FromBody] PasswordResetRequest request)
+        public async Task<Response> RequestPasswordReset([FromBody] PasswordResetRequest request)
         {
-            var usuario = await _context.Usuarios.SingleOrDefaultAsync(u => u.Email == request.Email);
-            if (usuario == null)
+            try
             {
-                return NotFound(new { message = "Usuario no encontrado" });
+                var usuario = await _context.Usuarios.SingleOrDefaultAsync(u => u.Email == request.Email);
+                if (usuario == null)
+                {
+                    return new Response
+                    {
+                        Success = false,
+                        Title = "Error",
+                        Message = "Usuario no encontrado."
+                    };
+                }
+
+                // Generar token de recuperación
+                var resetToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+                var passwordResetToken = new TokensAuth
+                {
+                    UsuarioId = usuario.UsuarioId,
+                    Token = resetToken,
+                    FechaGeneracion = DateTime.UtcNow,
+                    FechaExpiracion = DateTime.UtcNow.AddHours(1),
+                    Usado = false
+                };
+
+                _context.TokensAuth.Add(passwordResetToken);
+                await _context.SaveChangesAsync();
+
+                // Generar enlace de recuperación
+                var resetUrl = $"https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/reset-password?token={resetToken}";
+
+                // Enviar correo
+                await _authService.SendPasswordResetEmail(request.Email, resetUrl);
+
+                return new Response
+                {
+                    Success = true,
+                    Title = "Correo enviado",
+                    Message = "Se envíó el correo",
+                };
             }
-
-            // Generar token de recuperación
-            var resetToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
-            var passwordResetToken = new TokensAuth
+            catch (Exception ex)
             {
-                UsuarioId = usuario.UsuarioId,
-                Token = resetToken,
-                FechaGeneracion = DateTime.UtcNow,
-                FechaExpiracion = DateTime.UtcNow.AddHours(1),
-                Usado = false
-            };
-
-            _context.TokensAuth.Add(passwordResetToken);
-            await _context.SaveChangesAsync();
-
-            // Generar enlace de recuperación
-            var resetUrl = $"https://inventarioapp-backend-hzahh2g8axd5c9b0.canadacentral-01.azurewebsites.net/reset-password?token={resetToken}";
-
-            // Enviar correo (aquí necesitas configurar tu servicio de correo)
-            await _authService.SendPasswordResetEmail(request.Email, resetUrl);
-
-            return Ok(new { message = "Se ha enviado un enlace de recuperación a su correo electrónico" });
+                return new Response
+                {
+                    Success = false,
+                    Title = "Error inesperado",
+                    Message = $"Ocurrió un error inesperado: {ex.Message}"
+                };
+            }
         }
+
 
         public class PasswordResetRequest
         {
